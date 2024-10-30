@@ -4,6 +4,7 @@ import { BsChatLeftQuoteFill } from "react-icons/bs";
 import { HiMiniChatBubbleBottomCenterText, HiOutlineChatBubbleBottomCenterText } from "react-icons/hi2";
 import SearchInput from './SearchInput';
 import Conversations from './Conversations';
+import MyProfile from './MyProfile';
 
 
 const Sidebar = () => {
@@ -40,7 +41,7 @@ const Sidebar = () => {
             ))}
           </div>
           <div>
-            <div className='w-10 h-10 rounded-full bg-neutral-100 bg-contain bg-center border' style={{ backgroundImage: `url('https://images.unsplash.com/photo-1640951613773-54706e06851d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')` }}></div>
+            <MyProfile />
           </div>
         </div>
 

@@ -8,12 +8,17 @@ const useLogin = () => {
   const { setUser } = useAuthContext();
 
   const login = async (username, password) => {
+    const success = handleInputError({username, password});
+    if (!success) return;
     setLoading(true);
     try {
       
       const res = await useAxios.post('/auth/login', {
         username, password
       });
+      if(res.data.error) {
+        throw new Error(data.error);
+      }
 
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);
@@ -27,3 +32,11 @@ const useLogin = () => {
   return { loading, login };
 }
 export default useLogin
+
+const handleInputError = ({username, password}) => {
+  if (!username || !password) {
+    toast.error('Please fill in all fields');
+    return false;
+  }
+  return true;
+}

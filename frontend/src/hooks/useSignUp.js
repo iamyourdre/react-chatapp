@@ -16,6 +16,9 @@ const useSignUp = () => {
       const res = await useAxios.post('/auth/signup', {
         fullName, username, password, confirmPassword, gender
       });
+      if(res.data.error) {
+        throw new Error(data.error);
+      }
 
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);

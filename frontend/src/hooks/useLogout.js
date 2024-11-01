@@ -11,11 +11,12 @@ const useLogout = () => {
     setLoading(true);
     try {
       const res = await useAxios.post('/auth/logout');
-      if (res.status === 200) {
-        localStorage.setItem('user', JSON.stringify(res.data));
-        localStorage.removeItem('user');
-        setUser(null);
+      if(res.data.error) {
+        throw new Error(data.error);
       }
+      localStorage.setItem('user', JSON.stringify(res.data));
+      localStorage.removeItem('user');
+      setUser(null);
     } catch (error) {
       toast.error(error.message);
     }

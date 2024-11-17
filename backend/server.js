@@ -17,7 +17,7 @@ const __dirname = path.resolve();
 dotenv.config();
 
 app.use(cors({
-  origin: 'https://react-chatapp-test.vercel.app/',
+  origin: 'https://react-chatapp-test.vercel.app:5173',
   credentials: true
 }));
 

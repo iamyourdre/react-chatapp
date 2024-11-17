@@ -2,11 +2,11 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/(.*)", 
+      "source": "/api/(.*)",
       "destination": "/backend/server.js"
     },
     {
-      "source": "/(.*)", 
+      "source": "/(.*)",
       "destination": "/"
     }
   ],
@@ -14,17 +14,6 @@
     {
       "src": "backend/server.js",
       "use": "@vercel/node"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
     }
   ]
 }

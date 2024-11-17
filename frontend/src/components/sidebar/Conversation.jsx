@@ -1,18 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import useConversations from '../../zustand/useConversation';
+import { useSocketContext } from '../../context/SocketContext';
 
 const Conversation = ({conversation}) => {
-  
-  // const shortTime = (t) => {
-  //   const timeObj = new Date(t);
-  //   const time = timeObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  //   return time;
-  // }
 
   const {selectedConversation, setSelectedConversation} = useConversations();
   const isSelected = selectedConversation?._id === conversation._id;
-
+  const {onlineUsers} = useSocketContext();
+  const isOnline = (onlineUsers ?? []).includes(conversation._id);
+  
   return (
     <div className={`
         focus:text-slate-700 focus:bg-transparent p-3 flex items-center active:bg-emerald-100 cursor-pointer gap-3 border-b
@@ -21,7 +18,11 @@ const Conversation = ({conversation}) => {
       onClick={() => setSelectedConversation(conversation)}
     >
       <div className='my-auto'>
-        <img className='w-10 h-10 rounded-full' src={conversation.profilePic}></img>
+        <div className={
+          `w-10 h-10 avatar ${isOnline ? 'online' : ''}`
+        }>
+          <img className='rounded-full' src={conversation.profilePic}></img>
+        </div>
       </div>
       <span className='font-semibold'>{conversation.fullName}</span>
       {/* <div className='flex-1'>

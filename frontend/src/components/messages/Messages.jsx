@@ -2,9 +2,11 @@ import React, { useRef, useEffect } from 'react'
 import useGetMessages from '../../hooks/useGetMessages';
 import Message from './Message';
 import { set } from 'mongoose';
+import useListenMessages from '../../hooks/useListenMessages';
 
 const Messages = () => {
   const {messages, loading} = useGetMessages();
+  useListenMessages();
   const lastMessageRef = useRef();
   
   useEffect (() => {

@@ -11,7 +11,7 @@
       "src": "/api/(.*)",
       "dest": "backend/server.js"
     },
-    {"src": "/(.*)", "dest": "/"}
+    {"src": "/", "dest": "/login"}
   ]
   
  }

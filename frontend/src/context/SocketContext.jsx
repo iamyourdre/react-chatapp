@@ -15,7 +15,7 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      const socket = io("https://react-chatapp-test.vercel.app/", {
+      const socket = io("http://localhost:5000", {
         query: {
           userId: user._id
         }

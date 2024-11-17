@@ -1,21 +1,40 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
+import useGetMessages from '../../hooks/useGetMessages';
+import Message from './Message';
+import { set } from 'mongoose';
 
 const Messages = () => {
+  const {messages, loading} = useGetMessages();
+  const lastMessageRef = useRef();
+  
+  useEffect (() => {
+    setTimeout(() => {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  },[messages]);
+
   return (
-    <div class="chat chat-end">
-      <div class="chat-image avatar">
-        <div class="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS chat bubble component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+    <>
+      {loading && 
+        <div className='h-full'>
+          <div className="flex justify-center items-center h-full">
+            <span class="loading loading-dots loading-lg text-emerald-400"></span>
+          </div>
         </div>
-      </div>
-      <div class="chat-header">
-        Anakin&nbsp;
-        <time class="text-xs opacity-50">12:46</time>
-      </div>
-      <div class="chat-bubble">I hate you!</div>
-    </div>
+      }
+      {!loading && !messages.length && 
+        <div className='h-full'>
+          <div className="flex justify-center items-center h-full">
+          <div className='text-2xl text-gray-400'>Let's start a conversation</div>
+          </div>
+        </div>
+      }
+      {!loading && messages.length > 0 && messages.map((message) => (
+        <div key={message.id} ref={lastMessageRef}>
+          <Message key={message._id} message={message} />
+        </div>
+      ))}
+    </>
   )
 }
 

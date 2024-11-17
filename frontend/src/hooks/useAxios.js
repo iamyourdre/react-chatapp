@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const useAxios = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://react-chatapp-test.vercel.app/api',
   withCredentials: true,
 });
 

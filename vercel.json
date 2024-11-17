@@ -1,23 +1,30 @@
 {
   "version": 2,
-  "rewrites":  [
-    {"source": "/(.*)", "destination": "/"}
+  "rewrites": [
+    {
+      "source": "/api/(.*)", 
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/(.*)", 
+      "destination": "/"
+    }
   ],
   "builds": [
-   {
-    "src": "backend/server.js",
-    "use": "@vercel/node"
-   }
-  ],
-  "routes": [
-   {
-    "src": "/api(.*)",
-    "dest": "backend/server.js",
-    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-    "headers": {
-     "Access-Control-Allow-Origin": "*"
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
     }
-   }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
   ]
-  
- }
+}

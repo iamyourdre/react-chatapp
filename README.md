@@ -9,8 +9,6 @@
 - **User Authentication**: Secure login and registration system.
 ![User Authentication](https://i.ibb.co.com/xMgMQGd/image.png)
 
-- **Encrypted Message**: Messages are encrypted to ensure privacy and security.
-
 ## Technologies Used
 
 - **MongoDB**: NoSQL database for storing chat data.
